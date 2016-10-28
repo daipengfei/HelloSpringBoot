@@ -17,7 +17,7 @@ public class JacksonTest {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
     }
 
-    static String json = "{\"key\":{\"key_test1\":\"value1\",\"key_test2\":\"value2\"},\"hello\":\"world\"}";
+    static String json = "{\"key\":{\"key_test1\":\"value1\"},\"hello\":\"world\"}";
 
     public static void main(String[] args) throws IOException {
         Bean map = objectMapper.readValue(json, Bean.class);
