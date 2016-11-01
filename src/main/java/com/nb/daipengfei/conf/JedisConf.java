@@ -22,7 +22,6 @@ import redis.clients.jedis.JedisPoolConfig;
 @ConfigurationProperties(prefix = "my")
 public class JedisConf {
 
-    private List<String> test = new ArrayList<>();
 
     @Bean
     public JedisPool jedisPool() {
@@ -35,11 +34,4 @@ public class JedisConf {
         return new JedisPool(config, "localhost", 6379, 2000);
     }
 
-    public List<String> getTest() {
-        return test;
-    }
-
-    public void setTest(List<String> test) {
-        this.test = test;
-    }
 }

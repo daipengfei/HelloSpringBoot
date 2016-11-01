@@ -13,7 +13,7 @@ import sun.misc.BASE64Decoder;
  Created by daipengfei on 16/10/8.
  *                               *
  ********************************/
-@Component
+//@Component
 public class TimeTask {
 
     @Scheduled(fixedRate = 5000)

@@ -2,6 +2,10 @@ package com.nb.daipengfei.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,6 +33,11 @@ public class UserController {
     public User view(@PathVariable("id") String id) {
         User user = new User();
         user.setId(id);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return user;
     }
 
@@ -73,6 +82,25 @@ public class UserController {
                     "id=" + id +
                     ", name='" + name + '\'' +
                     '}';
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Executor executor = new ThreadPoolExecutor(
+                0,Integer.MAX_VALUE,60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
+        for(int i = 0; i < 900000000;i++) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        //ignore
+//                    }
+                    System.out.println(Thread.currentThread());
+                }
+            });
+//            Thread.sleep(1000);
         }
     }
 

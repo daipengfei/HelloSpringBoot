@@ -1,17 +1,20 @@
 package com.nb.daipengfei;
 
-import org.springframework.boot.SpringApplication;
+import org.apache.catalina.connector.Connector;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.enniu.cloud.bean.BeanConf;
 import com.enniu.cloud.bean.TaskConf;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.util.SocketUtils;
 
 /*********************************
  *                               *
@@ -20,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  ********************************/
 @SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 @Import({ BeanConf.class, TaskConf.class })
-//@EnableScheduling
+@EnableScheduling
 public class App {
 
     public static void main(String[] args) {
@@ -31,8 +34,26 @@ public class App {
                     applicationContext.setAllowBeanDefinitionOverriding(false);
                 }
             }).run(args);
-//        new SpringApplicationBuilder(App.class).run(args);
-//        SpringApplication.run(App.class,args);
     }
+
+    @Bean
+    public Integer port() {
+        return 8080;
+//        return SocketUtils.findAvailableTcpPort();
+    }
+
+    @Bean
+    public EmbeddedServletContainerFactory servletContainer() {
+        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
+        tomcat.addAdditionalTomcatConnectors(createStandardConnector());
+        return tomcat;
+    }
+
+    private Connector createStandardConnector() {
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+        connector.setPort(port());
+        return connector;
+    }
+
 
 }
