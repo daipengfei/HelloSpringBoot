@@ -5,6 +5,8 @@ import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
 import java.util.Properties;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /*********************************
  *                               *
@@ -14,12 +16,12 @@ import java.util.Properties;
 
 public class KafkaProducer {
     private final Producer<String, String> producer;
-    public final static String TOPIC = "message_bus_contacts";
+    public final static String TOPIC = "new_topic";
 
     private KafkaProducer(){
         Properties props = new Properties();
         //此处配置的是kafka的端口
-        props.put("metadata.broker.list", "192.168.2.200:9092");
+        props.put("metadata.broker.list", "192.168.21.4:9092");
 
         //配置value的序列化类
         props.put("serializer.class", "kafka.serializer.StringEncoder");
@@ -37,14 +39,15 @@ public class KafkaProducer {
 
     void produce() {
         int messageNo = 1;
-        final int COUNT = 2;
+        final int COUNT = 100000;
 
-        while (messageNo < COUNT) {
-            String key = String.valueOf(messageNo);
-            String data = "{\"content\":{\"from_service\":\"contacts\",\"event_type\":\"create\",\"user_id\":\"150000132\",\"category\":\"contacts\",\"resource_location\":\"150000132\",\"custom_info\":null,\"data\":\"{\\\"contacts\\\":[{\\\"name\\\":\\\"飞珏\\\",\\\"phones\\\":[\\\"18969121111\\\"]},{\\\"name\\\":\\\"李庚\\\",\\\"phones\\\":[\\\"13625816748\\\"]},{\\\"name\\\":\\\"-1430952744_18\\\",\\\"phones\\\":[\\\"15503774872\\\"]},{\\\"name\\\":\\\"-1430952744_19\\\",\\\"phones\\\":[\\\"14682870763\\\"]},{\\\"name\\\":\\\"-1430952744_16\\\",\\\"phones\\\":[\\\"14076216776\\\"]},{\\\"name\\\":\\\"-1430952744_17\\\",\\\"phones\\\":[\\\"12678402036\\\"]},{\\\"name\\\":\\\"-1430952744_14\\\",\\\"phones\\\":[\\\"11712412867\\\"]},{\\\"name\\\":\\\"-1430952744_15\\\",\\\"phones\\\":[\\\"13868543338\\\"]},{\\\"name\\\":\\\"-1430952744_12\\\",\\\"phones\\\":[\\\"11227182551\\\"]},{\\\"name\\\":\\\"-1430952744_0\\\",\\\"phones\\\":[\\\"16832117680\\\"]},{\\\"name\\\":\\\"-1430952744_13\\\",\\\"phones\\\":[\\\"11570464266\\\"]},{\\\"name\\\":\\\"-1430952744_10\\\",\\\"phones\\\":[\\\"14380670647\\\"]},{\\\"name\\\":\\\"-1430952744_11\\\",\\\"phones\\\":[\\\"11602362043\\\"]},{\\\"name\\\":\\\"-1430952744_3\\\",\\\"phones\\\":[\\\"11537565178\\\"]},{\\\"name\\\":\\\"-1430952744_4\\\",\\\"phones\\\":[\\\"16343456078\\\"]},{\\\"name\\\":\\\"-1430952744_1\\\",\\\"phones\\\":[\\\"12036051465\\\"]},{\\\"name\\\":\\\"-1430952744_2\\\",\\\"phones\\\":[\\\"12125537380\\\"]},{\\\"name\\\":\\\"圣兰1\\\",\\\"phones\\\":[\\\"137-85671720\\\",\\\"13485671720\\\"]},{\\\"name\\\":\\\"-1430952744_7\\\",\\\"phones\\\":[\\\"14444465563\\\"]},{\\\"name\\\":\\\"-1430952744_8\\\",\\\"phones\\\":[\\\"13337853678\\\"]},{\\\"name\\\":\\\"-1430952744_5\\\",\\\"phones\\\":[\\\"12388757018\\\"]},{\\\"name\\\":\\\"-1430952744_6\\\",\\\"phones\\\":[\\\"12007360824\\\"]},{\\\"name\\\":\\\"-1430952744_9\\\",\\\"phones\\\":[\\\"16752765647\\\"]}]}\"},\"uuid\":\"6ce684fb-2f88-40ad-92a1-e9709448de82\",\"time\":\"1476351605532\",\"big_app_id\":\"0\",\"service\":\"contacts\",\"tag\":\"tc_contacts\"}";
-            producer.send(new KeyedMessage<String, String>(TOPIC, key ,data));
-            System.out.println(data);
-            messageNo ++;
+        for (int i = 1;i <= COUNT;i++) {
+
+                    String key = String.valueOf(messageNo);
+                    String data = "--------------------------test------------------";
+                    producer.send(new KeyedMessage<String, String>(TOPIC, key ,data));
+                    System.out.println(messageNo);
+                    messageNo ++;
         }
     }
 

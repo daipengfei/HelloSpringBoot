@@ -41,4 +41,8 @@ public  class ServiceBean {
         this.name = name;
     }
 
+    @Bean
+    public ContextBean contextBean(){
+        return new ContextBean();
+    }
 }

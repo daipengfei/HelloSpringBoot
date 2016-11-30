@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 import com.enniu.cloud.bean.BeanEntity.LaterBean;
 import com.enniu.cloud.bean.TaskConf;
+import com.nb.daipengfei.bean.ContextBean;
 import com.nb.daipengfei.bean.PropertiesBean;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -36,7 +37,10 @@ public class InitBean implements ApplicationRunner {
     private JedisPool jedisPool;
 
     @Resource
-    private RetryComponent retryComponent;
+    private RetryInterface retryComponent;
+
+    @Resource
+    private RetryInterface retryComponentAgain;
 
     @Resource
     private PropertiesBean propertiesBean;
@@ -44,9 +48,15 @@ public class InitBean implements ApplicationRunner {
     @Resource
     private LaterBean later;
 
+    @Resource
+    ContextBean contextBean;
+
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
+        String test = contextBean.test();
+        System.out.println(test);
 //        retryComponent.testRetry("world");
+//        retryComponentAgain.testRetry("hi");
 //        RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://localhost:8500").build();
 //        List<Map<String, String>> config = adapter.create(HelloService.class).getConfig();
 //        Properties properties = new Properties();

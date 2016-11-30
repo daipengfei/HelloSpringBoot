@@ -18,25 +18,27 @@ public class HelloGuava {
         final ListenableFuture<String> future = executorService.submit(new Callable<String>() {
             @Override
             public String call() throws Exception {
-                Thread.sleep(5000);
+                System.out.println(Thread.currentThread().getId());
                 return "hi";
             }
         });
 
-//        future.addListener(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    System.out.println(future.get());
-//                } catch (InterruptedException | ExecutionException e) {
-//                    //ignore
-//                }
-//            }
-//        }, Executors.newFixedThreadPool(5));
+        future.addListener(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println(Thread.currentThread().getId());
+                    System.out.println(future.get());
+                } catch (InterruptedException | ExecutionException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, executorService);
 
         Futures.addCallback(future, new FutureCallback<String>() {
             @Override
             public void onSuccess(@Nullable String result) {
+                System.out.println(Thread.currentThread().getId());
                 System.out.println(result);
             }
 
@@ -45,7 +47,7 @@ public class HelloGuava {
 
             }
 
-        });
+        },executorService);
         System.out.println("hi guava");
         executorService.shutdown();
     }

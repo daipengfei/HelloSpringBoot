@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nb.daipengfei.bean.ServiceBean;
 import retrofit.http.POST;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 /*********************************
  *                               *
  Created by daipengfei on 16/8/25.
@@ -48,7 +51,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/services/test",method = RequestMethod.POST)
-    public @ResponseBody int testPost(@RequestBody User user){
+    public @ResponseBody int testPost(@Valid @RequestBody User user){
         System.out.println(user);
         return 0;
     }
@@ -58,6 +61,7 @@ public class UserController {
     public static final class User {
         private String         id;
 
+        @NotNull
         private String name;
 
         public String getId() {

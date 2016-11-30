@@ -2,7 +2,6 @@ package com.nb.daipengfei.rxjava;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -14,20 +13,17 @@ import rx.schedulers.Schedulers;
 
 public class HelloRxJava {
     public static void main(String[] args) throws InterruptedException {
-        final Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
+        final Observable<String> observable = Observable.create(
+                new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    //ignore
-                }
+                System.out.println(Thread.currentThread().getName());
                 subscriber.onNext("hi");
                 subscriber.onCompleted();
             }
         });
 
-        observable.subscribeOn(Schedulers.newThread()).subscribe(new Action1<String>() {
+        observable.subscribeOn(Schedulers.newThread()).observeOn(Schedulers.io()).subscribe(new Action1<String>() {
             @Override
             public void call(String name) {
                 System.out.println(name + ":" + Thread.currentThread().getName());
@@ -35,7 +31,5 @@ public class HelloRxJava {
         });
 
         System.out.println("Hi rxJava!");
-
-        Thread.sleep(100000);
     }
 }

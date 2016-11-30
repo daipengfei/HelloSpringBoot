@@ -1,6 +1,7 @@
 package com.nb.daipengfei.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /*********************************
@@ -21,4 +22,5 @@ public class PropertiesBean {
     public void setAttr(String attr) {
         this.attr = attr;
     }
+
 }
