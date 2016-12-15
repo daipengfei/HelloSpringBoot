@@ -10,6 +10,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -20,7 +22,7 @@ import redis.clients.jedis.JedisPoolConfig;
  ********************************/
 @Configuration
 @ConfigurationProperties(prefix = "my")
-public class JedisConf {
+public class RedisConfig {
 
 
     @Bean
@@ -32,6 +34,12 @@ public class JedisConf {
         config.setTestOnBorrow(true);
         config.setMaxWaitMillis(20000);
         return new JedisPool(config, "localhost", 6379, 2000);
+    }
+
+    @Bean
+    public JedisCluster jedisCluster(){
+        HostAndPort hostAndPort = new HostAndPort("127.0.0.1",2180);
+        return new JedisCluster(hostAndPort,1000);
     }
 
 }

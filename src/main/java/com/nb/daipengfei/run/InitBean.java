@@ -1,28 +1,15 @@
 package com.nb.daipengfei.run;
 
-import static com.nb.daipengfei.tasks.TimeTask.getFromBase64;
-
-import java.io.StringReader;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
 import javax.annotation.Resource;
 
-import com.enniu.cloud.bean.BeanEntity.LaterBean;
-import com.enniu.cloud.bean.TaskConf;
-import com.nb.daipengfei.bean.ContextBean;
-import com.nb.daipengfei.bean.PropertiesBean;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
-import com.nb.daipengfei.service.HelloService;
+import com.nb.daipengfei.bean.ContextBean;
+import com.nb.daipengfei.bean.PropertiesBean;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import redis.clients.jedis.JedisPool;
-import retrofit.RestAdapter;
 
 /*********************************
  *                               *
@@ -46,9 +33,6 @@ public class InitBean implements ApplicationRunner {
     private PropertiesBean propertiesBean;
 
     @Resource
-    private LaterBean later;
-
-    @Resource
     ContextBean contextBean;
 
     @Override
@@ -65,7 +49,6 @@ public class InitBean implements ApplicationRunner {
 //        }
 //        System.out.println(properties);
 //        System.out.println(propertiesBean.getAttr());
-        System.out.println(later);
     }
 
 }

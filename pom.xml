@@ -108,12 +108,18 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.10</artifactId>
-            <version>0.8.0</version>
+            <version>0.8.1.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.51.nb</groupId>
             <artifactId>hello-http</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot</artifactId>
+                </exclusion>
+            </exclusions>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -123,6 +129,11 @@
             <version>3.2.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.enniu.cloud.services</groupId>
+            <artifactId>riskbrain-portrait-datasource</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
