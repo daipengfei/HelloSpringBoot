@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.retry.annotation.Recover;
 import org.springframework.stereotype.Component;
 
 import com.nb.daipengfei.bean.ContextBean;
@@ -30,6 +31,9 @@ public class InitBean implements ApplicationRunner {
     private RetryInterface retryComponentAgain;
 
     @Resource
+    private Retry retry;
+
+    @Resource
     private PropertiesBean propertiesBean;
 
     @Resource
@@ -39,6 +43,8 @@ public class InitBean implements ApplicationRunner {
     public void run(ApplicationArguments applicationArguments) throws Exception {
         String test = contextBean.test();
         System.out.println(test);
+        retry.testRetry("good");
+        retry.testRetry2("nice");
 //        retryComponent.testRetry("world");
 //        retryComponentAgain.testRetry("hi");
 //        RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://localhost:8500").build();
