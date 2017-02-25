@@ -1,13 +1,10 @@
 package com.nb.daipengfei;
 
-import com.enniu.cloud.services.riskbrain.portrait.datasource.config.KafkaConfig;
-import com.enniu.cloud.services.riskbrain.portrait.datasource.config.RedisConfig;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -19,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 //@Import(BeanConf.class)
 //@Import(TestBean.class)
-@Import(KafkaConfig.class)
+//@Import(KafkaConfig.class)
 @EnableScheduling
 public class App {
 
