@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class Retry {
 
     @Retryable(RuntimeException.class)
-    public final void testRetry(String name) {
+    public  void testRetry(String name) {
         System.out.println("--------------------------retry11111111!!!!------------" + new Date());
         if (1 == 1) {
             throw new RuntimeException("haha11111111!!!!");
@@ -28,7 +28,7 @@ public class Retry {
     }
 
     @Retryable(RuntimeException.class)
-    public final void testRetry2(String name) {
+    public  void testRetry2(String name) {
         System.out.println("--------------------------retry22222222!!!!------------" + new Date());
         if (1 == 1) {
             throw new RuntimeException("haha22222222!!!!");

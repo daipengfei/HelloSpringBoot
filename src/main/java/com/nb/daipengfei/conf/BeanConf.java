@@ -20,14 +20,12 @@ public class BeanConf {
     @Bean
     @Scope("prototype")
     public ManagerBean managerBean(){
-        System.out.println("init manager bean");
         return new ManagerBean();
     }
 
 
     @Bean
     public AsyncEventBus asyncEventBus(){
-        System.out.println("init asyncEventBus");
         AsyncEventBus asyncEventBus = new AsyncEventBus(Executors.newFixedThreadPool(5));
         asyncEventBus.register(managerBean());
         return asyncEventBus;

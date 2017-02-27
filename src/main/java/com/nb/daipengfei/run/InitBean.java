@@ -46,11 +46,11 @@ public class InitBean implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        System.out.println("hi: " + testBean.getId());
-        String test = contextBean.test();
-        System.out.println(test);
-        retry.testRetry("good");
-        retry.testRetry2("nice");
+//        System.out.println("hi: " + testBean.getId());
+//        String test = contextBean.test();
+//        System.out.println(test);
+//        retry.testRetry("good");
+//        retry.testRetry2("nice");
 //        retryComponent.testRetry("world");
 //        retryComponentAgain.testRetry("hi");
 //        RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://localhost:8500").build();
