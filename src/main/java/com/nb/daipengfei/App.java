@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 
 @SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 @EnableScheduling
+//@ImportResource("/dubbo-consumer.xml")
 public class App {
 
 //    @Resource
