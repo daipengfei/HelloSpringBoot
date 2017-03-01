@@ -2,8 +2,10 @@ package com.nb.daipengfei.run;
 
 import javax.annotation.Resource;
 
+import com.nb.daipengfei.bean.TestBean;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.stereotype.Component;
 
@@ -39,12 +41,16 @@ public class InitBean implements ApplicationRunner {
     @Resource
     ContextBean contextBean;
 
+    @Resource
+    private TestBean testBean;
+
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        String test = contextBean.test();
-        System.out.println(test);
-        retry.testRetry("good");
-        retry.testRetry2("nice");
+//        System.out.println("hi: " + testBean.getId());
+//        String test = contextBean.test();
+//        System.out.println(test);
+//        retry.testRetry("good");
+//        retry.testRetry2("nice");
 //        retryComponent.testRetry("world");
 //        retryComponentAgain.testRetry("hi");
 //        RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://localhost:8500").build();

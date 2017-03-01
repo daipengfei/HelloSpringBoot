@@ -7,6 +7,9 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.netflix.config.ConfigurationManager;
+import com.netflix.config.DynamicPropertyFactory;
+import org.apache.commons.configuration.AbstractConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -54,6 +57,12 @@ public class UserController {
     public @ResponseBody int testPost(@Valid @RequestBody User user){
         System.out.println(user);
         return 0;
+    }
+
+    @RequestMapping(value = "/dynamic")
+    public String archaius(){
+        DynamicPropertyFactory instance = DynamicPropertyFactory.getInstance();
+        return instance.getStringProperty("hello","world").get();
     }
 
 
