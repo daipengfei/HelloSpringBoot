@@ -1,25 +1,21 @@
 package com.nb.daipengfei;
 
-import com.enniu.cloud.services.riskbrain.portrait.datasource.config.KafkaConfig;
-import com.enniu.cloud.services.riskbrain.portrait.datasource.config.RedisConfig;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /*********************************
- *                               *
- Created by daipengfei on 16/8/25.
- *                               *
+ * *
+ * Created by daipengfei on 16/8/25.
+ * *
  ********************************/
 @SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 //@Import(BeanConf.class)
 //@Import(TestBean.class)
-@Import(KafkaConfig.class)
 @EnableScheduling
 public class App {
 
@@ -28,12 +24,12 @@ public class App {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(App.class)
-            .initializers(new ApplicationContextInitializer<GenericApplicationContext>() {
-                @Override
-                public void initialize(GenericApplicationContext applicationContext) {
-                    applicationContext.setAllowBeanDefinitionOverriding(false);
-                }
-            }).run(args);
+                .initializers(new ApplicationContextInitializer<GenericApplicationContext>() {
+                    @Override
+                    public void initialize(GenericApplicationContext applicationContext) {
+                        applicationContext.setAllowBeanDefinitionOverriding(false);
+                    }
+                }).run(args);
     }
 
     @Bean
