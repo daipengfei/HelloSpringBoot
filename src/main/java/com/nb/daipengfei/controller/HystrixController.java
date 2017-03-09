@@ -36,14 +36,16 @@ public class HystrixController {
 				@Override
 				public void run() {
 					try {
-						HystrixRequestContext.setContextOnCurrentThread(context);
-						HystrixDemo command = new HystrixDemo();
-						command.execute();
-						System.out.println(Thread.currentThread().getName() + command.isResponseFromCache());
-						if (command.isFallback()) {
-							fallbackCount.addAndGet(1);
-						} else {
-							successCount.addAndGet(1);
+						synchronized (context) {
+							HystrixRequestContext.setContextOnCurrentThread(context);
+							HystrixDemo command = new HystrixDemo();
+							command.execute();
+							System.out.println(Thread.currentThread().getName() + command.isResponseFromCache());
+							if (command.isFallback()) {
+								fallbackCount.addAndGet(1);
+							} else {
+								successCount.addAndGet(1);
+							}
 						}
 					} catch (Exception e) {
 						errorMsg.add(e.getMessage());
