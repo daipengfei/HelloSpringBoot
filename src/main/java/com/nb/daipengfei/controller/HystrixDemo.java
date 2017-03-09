@@ -26,6 +26,7 @@ public class HystrixDemo extends HystrixCommand<String> {
 	@Override
 	protected String getFallback() {
 		isFallback = true;
+		System.out.println("fallback: " + Thread.currentThread().getName());
 		return "fall back!";
 	}
 
@@ -36,5 +37,12 @@ public class HystrixDemo extends HystrixCommand<String> {
 	@Override
 	protected String getCacheKey() {
 		return "key";
+	}
+
+	@Override
+	public String toString() {
+		return "HystrixDemo{" +
+				"isFallback=" + isFallback +
+				'}';
 	}
 }

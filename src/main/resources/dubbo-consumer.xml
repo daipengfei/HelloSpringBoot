@@ -15,4 +15,5 @@
 
     <dubbo:reference id="helloService" interface="com.nb.daipengfei.dubbo.provider.HelloService"/>
 
+    <bean id="consumerBean" class="com.nb.daipengfei.dubbo.consumer.ConsumerBean"/>
 </beans>

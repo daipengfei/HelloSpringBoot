@@ -9,7 +9,7 @@ import com.alibaba.dubbo.rpc.*;
  * on 2017/2/27.
  */
 
-@Activate(group = Constants.CONSUMER)
+//@Activate(group = Constants.CONSUMER)
 public class HystrixFilter implements Filter {
 	@Override
 	public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
