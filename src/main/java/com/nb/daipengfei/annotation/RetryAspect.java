@@ -21,4 +21,10 @@ public class RetryAspect {
         return joinPoint.proceed();
     }
 
+    @Around("@annotation(com.nb.daipengfei.annotation.MockClient)")
+    public Object test(ProceedingJoinPoint joinPoint) throws Throwable {
+        String s = "java.lang.String";
+        return Class.forName(s).newInstance();
+    }
+
 }

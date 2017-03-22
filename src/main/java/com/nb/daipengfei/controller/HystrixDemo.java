@@ -2,6 +2,7 @@ package com.nb.daipengfei.controller;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandProperties;
 
 /**
  * Created by daipengfei
@@ -13,7 +14,8 @@ public class HystrixDemo extends HystrixCommand<String> {
 
 	public HystrixDemo() {
 		super(Setter.withGroupKey(HystrixCommandGroupKey.
-				Factory.asKey(HystrixDemo.class.getSimpleName())));
+				Factory.asKey(HystrixDemo.class.getSimpleName()))
+				.andCommandPropertiesDefaults(HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(50)));
 	}
 
 	@Override
@@ -34,10 +36,6 @@ public class HystrixDemo extends HystrixCommand<String> {
 		return isFallback;
 	}
 
-	@Override
-	protected String getCacheKey() {
-		return "key";
-	}
 
 	@Override
 	public String toString() {

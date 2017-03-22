@@ -2,7 +2,9 @@ package com.nb.daipengfei.run;
 
 import javax.annotation.Resource;
 
+import com.nb.daipengfei.annotation.MockClient;
 import com.nb.daipengfei.bean.TestBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -44,8 +46,14 @@ public class InitBean implements ApplicationRunner {
     @Resource
     private TestBean testBean;
 
+    @Value("com.hello.key")
+    private String helloKey;
+
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
+        System.out.println(helloKey);
+        String s= propertiesBean.testCast();
+        System.out.println("hahahah: " + s.equals(""));
 //        System.out.println("hi: " + testBean.getId());
 //        String test = contextBean.test();
 //        System.out.println(test);

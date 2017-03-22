@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 
 @SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 @EnableScheduling
+@EnableAspectJAutoProxy
 //@ImportResource("/dubbo-consumer.xml")
 public class App {
 
@@ -33,10 +35,10 @@ public class App {
 				.initializers(new ApplicationContextInitializer<GenericApplicationContext>() {
 					@Override
 					public void initialize(GenericApplicationContext applicationContext) {
-						applicationContext.setAllowBeanDefinitionOverriding(false);
-						ConfigurableEnvironment env = applicationContext.getEnvironment();
-						env.getPropertySources().addLast(new ConsulPropertySource(
-								"service/config.properties", new HashMap<>()));
+//						applicationContext.setAllowBeanDefinitionOverriding(false);
+//						ConfigurableEnvironment env = applicationContext.getEnvironment();
+//						env.getPropertySources().addLast(new ConsulPropertySource(
+//								"service/config.properties", new HashMap<>()));
 					}
 				}).run(args);
 	}
