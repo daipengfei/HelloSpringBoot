@@ -17,13 +17,13 @@ import sun.misc.BASE64Decoder;
  Created by daipengfei on 16/10/8.
  *                               *
  ********************************/
-//@Component
+@Component
 public class TimeTask {
 
     @Scheduled(cron = "0/10 * * * * ? ")
     public void schedule() throws InterruptedException {
-        Thread.sleep(2000);
-        System.out.println(Thread.currentThread().getId() + " : a "+ new Date());
+        Thread.sleep(200);
+        System.out.println(Thread.currentThread().getName() + " : a "+ new Date());
     }
 
     public static String getFromBase64(String s) throws IOException {
