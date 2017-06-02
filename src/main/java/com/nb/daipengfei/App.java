@@ -3,6 +3,8 @@ package com.nb.daipengfei;
 import com.nb.daipengfei.conf.ConsulPropertySource;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContextInitializer;
@@ -21,10 +23,13 @@ import java.util.HashMap;
  *                               *
  ********************************/
 
-@SpringBootApplication(exclude = RabbitAutoConfiguration.class)
+@SpringBootApplication(exclude = {RabbitAutoConfiguration.class,
+		MongoAutoConfiguration.class,
+		MongoDataAutoConfiguration.class})
 @EnableScheduling
 @EnableAspectJAutoProxy
 //@ImportResource("/dubbo-consumer.xml")
+@ImportResource("/job.xml")
 public class App {
 
 //    @Resource
@@ -43,11 +48,11 @@ public class App {
 				}).run(args);
 	}
 
-	@Bean
-	public Integer port() {
-		return 8080;
-//        return SocketUtils.findAvailableTcpPort();
-	}
+//	@Bean
+//	public Integer port() {
+//		return 8082;
+////        return SocketUtils.findAvailableTcpPort();
+//	}
 
 //    @Bean
 //    public EmbeddedServletContainerFactory servletContainer() {

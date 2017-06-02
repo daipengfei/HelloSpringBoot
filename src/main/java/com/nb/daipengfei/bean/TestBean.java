@@ -2,6 +2,11 @@ package com.nb.daipengfei.bean;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /*********************************
  *                               *
  Created by daipengfei on 16/12/9.
@@ -9,13 +14,22 @@ import org.springframework.stereotype.Component;
  ********************************/
 @Component
 public class TestBean {
-	private Long id;
+    ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
-	public Long getId() {
-		return id;
-	}
+    @Resource
+    private InnerBean innerBean;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public TestBean() {
+
+    }
+
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
