@@ -18,15 +18,24 @@
                    max-retries="3" />
 
     <!--&lt;!&ndash; 配置作业&ndash;&gt;-->
-    <!--<job:dataflow id="firstJobFlow" class="com.nb.daipengfei.job.FirstJob"-->
-                <!--registry-center-ref="regCenter"-->
-                <!--cron="0/10 * * * * ?"-->
-                <!--sharding-total-count="4"/>-->
+
+    <!--<job:dataflow id="firstTask" class="com.nb.daipengfei.job.FirstJob"-->
+                  <!--registry-center-ref="regCenter"-->
+                  <!--cron="0/10 * * * * ?"-->
+                  <!--sharding-total-count="4"/>-->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:mysql://localhost:3306/task_trace"/>
+        <property name="username" value="daipengfei"/>
+        <property name="password" value="5446655"/>
+    </bean>
 
     <!-- 配置作业-->
     <job:simple id="secondJob" class="com.nb.daipengfei.job.SecondJob"
                   registry-center-ref="regCenter"
                   cron="0/10 * * * * ?"
-                  sharding-total-count="3"/>
+                sharding-total-count="3" event-trace-rdb-data-source="druidDataSource">
+        <job:listener class="com.nb.daipengfei.job.listener.FirstListener"/>
+    </job:simple>
 
 </beans>

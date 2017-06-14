@@ -1,5 +1,6 @@
 package com.nb.daipengfei.dubbo.consumer;
 
+import com.nb.daipengfei.dubbo.provider.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,6 +17,8 @@ public class HelloServiceConsumer {
 			IllegalAccessException, NoSuchMethodException {
 		ApplicationContext context =
 				new ClassPathXmlApplicationContext("/dubbo-consumer.xml");
-
+//		HelloService bean = context.getBean("helloService", HelloService.class);
+//		String daipengfei = bean.sayHello("daipengfei");
+//		System.out.println(daipengfei);
 	}
 }

@@ -17,6 +17,7 @@ public class HelloServiceImpl implements HelloService {
 		} catch (InterruptedException e) {
 			//ignore
 		}
+		System.out.println("received from client!");
 		return "Hello " + name;
 	}
 

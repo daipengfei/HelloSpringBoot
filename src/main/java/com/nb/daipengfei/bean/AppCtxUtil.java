@@ -21,7 +21,7 @@ public class AppCtxUtil implements ApplicationContextAware {
 
     public <T> T getBean(Class<T> requireType) {
         if (null != requireType) {
-            return this.applicationContext.getBean(requireType);
+//            return this.applicationContext.getBean(requireType);
         }
         return null;
     }

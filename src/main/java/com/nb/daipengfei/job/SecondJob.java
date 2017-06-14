@@ -18,6 +18,7 @@ public class SecondJob implements SimpleJob {
     @Override
     public void execute(ShardingContext shardingContext) {
         int shard = shardingContext.getShardingItem();
+
         int total = shardingContext.getShardingTotalCount();
         System.out.println("hi : " + shard);
         List<TransportData> list = new ArrayList<>();

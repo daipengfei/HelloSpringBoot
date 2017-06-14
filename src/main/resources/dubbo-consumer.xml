@@ -13,7 +13,8 @@
 
     <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 
-    <dubbo:reference id="helloService" interface="com.nb.daipengfei.dubbo.provider.HelloService"/>
+    <dubbo:reference id="helloService" interface="com.nb.daipengfei.dubbo.provider.HelloService"
+     stub="com.nb.daipengfei.dubbo.provider.HelloServiceStub"/>
 
     <bean id="consumerBean" class="com.nb.daipengfei.dubbo.consumer.ConsumerBean"/>
 </beans>
