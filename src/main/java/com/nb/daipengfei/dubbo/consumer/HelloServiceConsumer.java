@@ -17,8 +17,8 @@ public class HelloServiceConsumer {
 			IllegalAccessException, NoSuchMethodException {
 		ApplicationContext context =
 				new ClassPathXmlApplicationContext("/dubbo-consumer.xml");
-//		HelloService bean = context.getBean("helloService", HelloService.class);
-//		String daipengfei = bean.sayHello("daipengfei");
-//		System.out.println(daipengfei);
+		HelloService bean = context.getBean("helloService", HelloService.class);
+		String daipengfei = bean.sayHello("daipengfei");
+		System.out.println(daipengfei);
 	}
 }
