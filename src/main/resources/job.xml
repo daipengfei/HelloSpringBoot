@@ -11,11 +11,11 @@
                         http://www.dangdang.com/schema/ddframe/job/job.xsd
                         ">
     <!--配置作业注册中心 -->
-    <reg:zookeeper id="regCenter" server-lists="localhost:2181"
-                   namespace="dd-job"
-                   base-sleep-time-milliseconds="1000"
-                   max-sleep-time-milliseconds="3000"
-                   max-retries="3" />
+    <!--<reg:zookeeper id="regCenter" server-lists="localhost:2181"-->
+                   <!--namespace="dd-job"-->
+                   <!--base-sleep-time-milliseconds="1000"-->
+                   <!--max-sleep-time-milliseconds="3000"-->
+                   <!--max-retries="3" />-->
 
     <!--&lt;!&ndash; 配置作业&ndash;&gt;-->
 
@@ -31,11 +31,11 @@
     </bean>
 
     <!-- 配置作业-->
-    <job:simple id="secondJob" class="com.nb.daipengfei.job.SecondJob"
-                  registry-center-ref="regCenter"
-                  cron="0/10 * * * * ?"
-                sharding-total-count="3" event-trace-rdb-data-source="druidDataSource">
-        <job:listener class="com.nb.daipengfei.job.listener.FirstListener"/>
-    </job:simple>
+    <!--<job:simple id="secondJob" class="com.nb.daipengfei.job.SecondJob"-->
+                  <!--registry-center-ref="regCenter"-->
+                  <!--cron="0/10 * * * * ?"-->
+                <!--sharding-total-count="3" event-trace-rdb-data-source="druidDataSource">-->
+        <!--<job:listener class="com.nb.daipengfei.job.listener.FirstListener"/>-->
+    <!--</job:simple>-->
 
 </beans>

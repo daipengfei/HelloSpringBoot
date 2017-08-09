@@ -17,10 +17,10 @@ import sun.misc.BASE64Decoder;
  Created by daipengfei on 16/10/8.
  *                               *
  ********************************/
-//@Component
+@Component
 public class TimeTask {
 
-    @Scheduled(cron = "0/10 * * * * ? ")
+    @Scheduled(cron = "3/10 * * * * ? ")
     public void schedule() throws InterruptedException {
         Thread.sleep(200);
         System.out.println(Thread.currentThread().getName() + " : a "+ new Date());
@@ -34,7 +34,8 @@ public class TimeTask {
     @Bean
     public TaskScheduler taskScheduler(){
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
-        scheduler.setPoolSize(10);
+        scheduler.setThreadNamePrefix("DaiPengFei-");
+        scheduler.setPoolSize(1);
         return scheduler;
     }
 }

@@ -13,11 +13,12 @@ import java.util.Date;
  *                               *
  ********************************/
 @Component
-public class TimeTaskB {
+public class TimeTaskC {
 
-	@Scheduled(cron = "1 0/2 * * * ?")
+	@Scheduled(cron = "3/20 * * * * ?")
 	public void schedule() throws InterruptedException {
-		System.out.println(Thread.currentThread().getName() + " : B " + new Date());
+		Thread.sleep(100);
+		System.out.println(Thread.currentThread().getName() + " : C " + new Date());
 	}
 
 	public static String getFromBase64(String s) throws IOException {
