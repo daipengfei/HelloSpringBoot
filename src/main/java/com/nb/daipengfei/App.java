@@ -26,7 +26,7 @@ import java.util.HashMap;
 @SpringBootApplication(exclude = {RabbitAutoConfiguration.class,
 		MongoAutoConfiguration.class,
 		MongoDataAutoConfiguration.class})
-@EnableScheduling
+//@EnableScheduling
 @EnableAspectJAutoProxy
 //@ImportResource("/dubbo-consumer.xml")
 @ImportResource("/job.xml")

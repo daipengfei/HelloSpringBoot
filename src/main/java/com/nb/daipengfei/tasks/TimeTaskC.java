@@ -1,5 +1,6 @@
 package com.nb.daipengfei.tasks;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
@@ -13,6 +14,7 @@ import java.util.Date;
  *                               *
  ********************************/
 @Component
+@EnableScheduling
 public class TimeTaskC {
 
 	@Scheduled(cron = "3/20 * * * * ?")

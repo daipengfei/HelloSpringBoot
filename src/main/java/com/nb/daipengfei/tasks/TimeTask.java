@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -18,6 +19,7 @@ import sun.misc.BASE64Decoder;
  *                               *
  ********************************/
 @Component
+@EnableScheduling
 public class TimeTask {
 
     @Scheduled(cron = "3/10 * * * * ? ")
@@ -31,11 +33,11 @@ public class TimeTask {
         return new String(decoder.decodeBuffer(s), "utf-8");
     }
 
-    @Bean
+//    @Bean
     public TaskScheduler taskScheduler(){
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setThreadNamePrefix("DaiPengFei-");
-        scheduler.setPoolSize(1);
+        scheduler.setPoolSize(10);
         return scheduler;
     }
 }

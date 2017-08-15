@@ -1,5 +1,6 @@
 package com.nb.daipengfei.tasks;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
@@ -13,9 +14,10 @@ import java.util.Date;
  *                               *
  ********************************/
 @Component
+@EnableScheduling
 public class TimeTaskB {
 
-	@Scheduled(cron = "1 0/2 * * * ?")
+	@Scheduled(cron = "1/30 * * * * ?")
 	public void schedule() throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + " : B " + new Date());
 	}
